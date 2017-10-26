@@ -10,5 +10,6 @@ public class DestroyTrigger : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		Destroy(collision.gameObject);
+		print("GAME OVER!"); //todo remove later
 	}
 }
