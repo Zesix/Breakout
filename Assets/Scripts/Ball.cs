@@ -7,46 +7,37 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-	[SerializeField] private float randomizeForce = .2f;
-	private Rigidbody2D rb2D;
+	[SerializeField] private float launchForce = 1f;
+	[SerializeField] private float randomFactor = 0.5f;
+
 	private AudioSource audioSource;
-	[SerializeField] private float launchForce;
-	[SerializeField] private Paddle paddle;
-	private bool autoPlay;
+	private Rigidbody2D rb2D;
 
 	private void Start()
 	{
 		rb2D = GetComponent<Rigidbody2D>();
 		audioSource = GetComponent<AudioSource>();
-		transform.parent = paddle.gameObject.transform;
+		transform.parent = FindObjectOfType<Paddle>().transform;
+		rb2D.isKinematic = true;
 	}
 
 	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0) && transform.parent != null)
+		if (LevelManager.gameState == LevelManager.GameState.Ready)
 		{
-			transform.parent = null;
-			rb2D.velocity = new Vector2(Random.Range(-randomizeForce, randomizeForce), launchForce);
-			autoPlay = true;
-		}
-
-		if (autoPlay)
-		{
-			paddle.autoPlay = true; ;
-			paddle.gameObject.transform.position = new Vector2(transform.position.x, paddle.gameObject.transform.position.y);
+			if (Input.GetMouseButtonDown(0))
+			{
+				rb2D.isKinematic = false;
+				transform.parent = null;
+				rb2D.velocity = Vector2.up * launchForce;
+				LevelManager.gameState = LevelManager.GameState.Started;
+			}
 		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		// todo state game has started
-		// todo autoplay to inspector
-		// todo shakescreen on hit - higher shake on hit blocks
-
-		if (autoPlay)
-		{
-			rb2D.velocity += Vector2.right * Random.Range(-randomizeForce, randomizeForce);
-			audioSource.Play();
-		}
+		audioSource.Play();
+		rb2D.velocity += Vector2.one * Random.Range(-randomFactor, randomFactor);
 	}
 }

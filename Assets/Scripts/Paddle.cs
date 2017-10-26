@@ -7,19 +7,29 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-	public bool autoPlay;
+	[SerializeField] private bool autoPlay = false;
+	[SerializeField] private float clampedPos = 1f;
+	private Ball ball;
+
+	private void Start()
+	{
+		ball = FindObjectOfType<Ball>();
+	}
 
 	private void Update()
 	{
-		if (!autoPlay)
+		float xPos = new float();
+
+		if (autoPlay)
 		{
-			float mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-
-			mousePos = Mathf.Clamp(mousePos, -5.65f, 5.65f);
-			//todo add math to get the correct clamp size based on the size of the paddle
-			transform.position = new Vector3(mousePos, transform.position.y, 0f);
+			xPos = ball.transform.position.x;
 		}
-	}
+		else
+		{
+			xPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+		}
 
-	//todo onball collision compare ball position to paddle position and add a force to ball
+		float newX = Mathf.Clamp(xPos, -clampedPos, clampedPos);
+		transform.position = new Vector2(newX, transform.position.y);
+	}
 }

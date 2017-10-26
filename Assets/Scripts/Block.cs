@@ -7,45 +7,37 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-	[SerializeField] private AudioClip hit;
-	[SerializeField] private int maxHp = 1;
-	private static int blockCount;
-	// todo count only breakable blocks
-	private int currentHp;
+	[SerializeField] private AudioClip audioClip = new AudioClip();
+	[SerializeField] private float shrinkAmount = .5f;
+	[SerializeField] private int hitResistance = 1;
+	private int hitCount;
 
-	private void OnLevelWasLoaded(int level)
-	{
-		blockCount = 0;
-	}
+	public static int blockCount;
 
 	private void Start()
 	{
+		hitCount = 0;
 		blockCount++;
-		print(blockCount);
-		currentHp = maxHp;
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-		currentHp--;
-		if (currentHp <= 0)
+		hitCount++;
+
+		transform.localScale = Vector3.one * (1f - shrinkAmount);
+
+		AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
+		if (hitCount >= hitResistance)
 		{
 			blockCount--;
+
 			if (blockCount <= 0)
 			{
-				print("YOU WIN");
+				LevelManager.LoadNextLevel();
 			}
 
 			Destroy(gameObject);
-			//todo whena  block is destroyed add a rigidbody for block deactivate collision and slowly increase opacity and let block fall
 		}
-		//todo add points
-		//todo feedback player when hit
-		//todo maybe add a logfile that records velocity of ball id of block hit id of block destroyed
-	}
-
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		AudioSource.PlayClipAtPoint(hit, transform.position, 1f);
 	}
 }

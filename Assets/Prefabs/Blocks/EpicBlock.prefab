@@ -120,5 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f48227faabb914bb7e604a9d50aa89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit: {fileID: 8300000, guid: bb200dc563ddd4549a69aa277135e278, type: 3}
-  maxHp: 5
+  audioClip: {fileID: 8300000, guid: bb200dc563ddd4549a69aa277135e278, type: 3}
+  shrinkAmount: 0.1
+  hitResistance: 5

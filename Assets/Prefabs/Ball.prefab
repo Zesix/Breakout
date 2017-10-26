@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 23738988309571916}
   - component: {fileID: 58696706449734040}
   - component: {fileID: 50822862600000774}
-  - component: {fileID: 114308382062851872}
   - component: {fileID: 82904688603714654}
+  - component: {fileID: 114308382062851872}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -132,7 +132,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 669abf1993e3b5a4fb3128b6ca2027c3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -212,6 +212,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95786c18e8a4c884199c3f7d90b384ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomizeForce: 0.2
   launchForce: 10
-  paddle: {fileID: 0}
+  randomFactor: 0.5
