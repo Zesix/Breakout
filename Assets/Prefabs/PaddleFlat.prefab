@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1522142078503622}
+  m_RootGameObject: {fileID: 1188524934541412}
   m_IsPrefabParent: 1
---- !u!1 &1522142078503622
+--- !u!1 &1188524934541412
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4462795310983518}
-  - component: {fileID: 33967548885533786}
-  - component: {fileID: 23188750004150058}
-  - component: {fileID: 61361813219551530}
-  - component: {fileID: 114401849695382474}
-  - component: {fileID: 50580644579955622}
+  - component: {fileID: 4268166960356694}
+  - component: {fileID: 33378539429350362}
+  - component: {fileID: 23789127006015702}
+  - component: {fileID: 61022801803971712}
+  - component: {fileID: 50192506915852994}
+  - component: {fileID: 114456505842824750}
   m_Layer: 0
-  m_Name: HardBlock
-  m_TagString: Untagged
+  m_Name: PaddleFlat
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4462795310983518
+--- !u!4 &4268166960356694
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522142078503622}
+  m_GameObject: {fileID: 1188524934541412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.25, z: 1}
+  m_LocalPosition: {x: 0, y: -4.5, z: 0}
+  m_LocalScale: {x: 2, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23188750004150058
+--- !u!23 &23789127006015702
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522142078503622}
+  m_GameObject: {fileID: 1188524934541412}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 589fca97ab957e445b0a51c6569c57f1, type: 2}
+  - {fileID: 2100000, guid: bfd59fef5e787674f85c09600d0de27e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,20 +78,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33967548885533786
+--- !u!33 &33378539429350362
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522142078503622}
+  m_GameObject: {fileID: 1188524934541412}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50580644579955622
+--- !u!50 &50192506915852994
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522142078503622}
+  m_GameObject: {fileID: 1188524934541412}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -105,12 +105,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61361813219551530
+--- !u!61 &61022801803971712
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522142078503622}
+  m_GameObject: {fileID: 1188524934541412}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -130,24 +130,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114401849695382474
+--- !u!114 &114456505842824750
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522142078503622}
+  m_GameObject: {fileID: 1188524934541412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f48227faabb914bb7e604a9d50aa89, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ccd55e2e92fbc1449ff0902aa4e71d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: bb200dc563ddd4549a69aa277135e278, type: 3}
-  shrinkAmount: 0.1
-  hitResistance: 3
-  explosion: {fileID: 1631951960654270, guid: ec7822e20d0919f4ea258f9e1043a113, type: 2}
-  deathExplosion: {fileID: 1631951960654270, guid: ff7d8057b7620fc408da8d55da99e45f,
-    type: 2}
-  deathExploForce: 5
-  shakeHit: 0.05
-  shakeExplo: 0.1
-  blockType: 0
+  autoPlay: 1
+  clampedPos: 5.65

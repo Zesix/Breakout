@@ -11,6 +11,29 @@ public class LevelManager : MonoBehaviour
 	public enum GameState { Ready, Started, Paused }
 
 	public static GameState gameState;
+	private bool paused;
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			ReloadCurrent();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (paused)
+			{
+				Time.timeScale = 1;
+				paused = !paused;
+			}
+			else
+			{
+				Time.timeScale = 0;
+				paused = !paused;
+			}
+		}
+	}
 
 	public static void ReloadCurrent()
 	{
@@ -22,7 +45,8 @@ public class LevelManager : MonoBehaviour
 
 	public void LoadLevel(string levelName)
 	{
-		SceneManager.LoadScene(levelName);
+		//todo fix to string levelname
+		SceneManager.LoadScene(1);
 		gameState = GameState.Ready;
 	}
 
@@ -38,23 +62,12 @@ public class LevelManager : MonoBehaviour
 	{
 		Application.Quit();
 	}
-
-	//!bug local scale
-	//opt add a moving obsticle
-	//opt add lives system
-	//opt add more levels
-	//opt add particle effects when hiting something
-	//opt add pause screen with options and a slider to set volume of music and SFX
-	//opt add reload level button
-	//opt count only breakable blocks
-	//opt create blocktype unbreakable/breakable
-	//opt dont restart song on reloading same level
-	//opt maybe add a logfile that records velocity of ball id of block hit id of block destroyed
-	//opt more than one ball
-	//opt particle fx equals block color
-	//opt restart system
-	//opt shakescreen on hit - higher shake on hit blocks
-	//opt whena  block is destroyed add a rigidbody for block deactivate collision and slowly increase opacity and let block fall
-	//todo when the ball collides with the paddle, check the diference pos between the center of both and add force vector
-	//todo fix ball movement in pad
 }
+
+//opt add a moving obsticle
+//opt pause screen with options and a slider to set volume of music and SFX
+//opt dont restart song on reloading same level
+//opt more than one ball
+//opt when a block is destroyed add a rigidbody for block deactivate collision and slowly increase opacity and let block fall
+//opt add shot from the paddle
+//opt Space Invaders + Breakout

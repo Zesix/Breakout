@@ -18,6 +18,9 @@ public class Paddle : MonoBehaviour
 
 	private void Update()
 	{
+		//if (Input.GetKeyDown(KeyCode.P))
+		//	autoPlay = !autoPlay;
+
 		float xPos = new float();
 
 		if (autoPlay)

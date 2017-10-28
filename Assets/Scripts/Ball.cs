@@ -7,11 +7,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-	[SerializeField] private float launchForce = 1f;
-	[SerializeField] private float randomFactor = 0.5f;
-
 	private AudioSource audioSource;
 	private Rigidbody2D rb2D;
+	[SerializeField] private float speed = 1f;
 
 	private void Start()
 	{
@@ -29,15 +27,19 @@ public class Ball : MonoBehaviour
 			{
 				rb2D.isKinematic = false;
 				transform.parent = null;
-				rb2D.velocity = Vector2.up * launchForce;
+				rb2D.velocity = Vector2.up * speed;
 				LevelManager.gameState = LevelManager.GameState.Started;
 			}
 		}
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionExit2D(Collision2D collision)
 	{
 		audioSource.Play();
-		rb2D.velocity += Vector2.one * Random.Range(-randomFactor, randomFactor);
+		rb2D.velocity = rb2D.velocity.normalized * speed;
+		if (collision.gameObject.tag == "Paddle")
+		{
+			rb2D.velocity += Vector2.up * 4;
+		}
 	}
 }

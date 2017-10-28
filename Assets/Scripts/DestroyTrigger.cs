@@ -10,6 +10,9 @@ public class DestroyTrigger : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		Destroy(collision.gameObject);
-		LevelManager.ReloadCurrent();
+		if (collision.gameObject.tag == "Ball")
+		{
+			LevelManager.ReloadCurrent();
+		}
 	}
 }
