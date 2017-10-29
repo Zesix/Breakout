@@ -7,39 +7,39 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-	private AudioSource audioSource;
-	private Rigidbody2D rb2D;
-	[SerializeField] private float speed = 1f;
+	private AudioSource _audioSource;
+	private Rigidbody2D _rb2D;
+	[SerializeField] private float _speed = 1f;
 
 	private void Start()
 	{
-		rb2D = GetComponent<Rigidbody2D>();
-		audioSource = GetComponent<AudioSource>();
+		_rb2D = GetComponent<Rigidbody2D>();
+		_audioSource = GetComponent<AudioSource>();
 		transform.parent = FindObjectOfType<Paddle>().transform;
-		rb2D.isKinematic = true;
+		_rb2D.isKinematic = true;
 	}
 
 	private void Update()
 	{
-		if (LevelManager.gameState == LevelManager.GameState.Ready)
+		if (LevelManager.GameState == LevelManager.State.Ready)
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
-				rb2D.isKinematic = false;
+				_rb2D.isKinematic = false;
 				transform.parent = null;
-				rb2D.velocity = Vector2.up * speed;
-				LevelManager.gameState = LevelManager.GameState.Started;
+				_rb2D.velocity = Vector2.up * _speed;
+				LevelManager.GameState = LevelManager.State.Started;
 			}
 		}
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-		audioSource.Play();
-		rb2D.velocity = rb2D.velocity.normalized * speed;
+		_audioSource.Play();
+		_rb2D.velocity = _rb2D.velocity.normalized * _speed;
 		if (collision.gameObject.tag == "Paddle")
 		{
-			rb2D.velocity += Vector2.up * 4;
+			_rb2D.velocity += Vector2.up * 4;
 		}
 	}
 }

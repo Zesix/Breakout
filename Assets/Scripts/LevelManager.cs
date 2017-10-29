@@ -8,38 +8,38 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-	public enum GameState { Ready, Started, Paused }
+	public enum State { Ready, Started, Paused }
 
-	public static GameState gameState;
-	private bool paused;
+	public static State GameState;
+	private bool _paused;
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.R))
+		if (Input.GetButtonDown("Reload"))
 		{
 			ReloadCurrent();
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetButtonDown("Escape"))
 		{
-			if (paused)
+			if (_paused)
 			{
 				Time.timeScale = 1;
-				paused = !paused;
+				_paused = !_paused;
 			}
 			else
 			{
 				Time.timeScale = 0;
-				paused = !paused;
+				_paused = !_paused;
 			}
 		}
 	}
 
 	public static void ReloadCurrent()
 	{
-		int levelToLoad = SceneManager.GetActiveScene().buildIndex;
+		var levelToLoad = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(levelToLoad);
-		gameState = GameState.Ready;
+		GameState = State.Ready;
 		Block.blockCount = 0;
 	}
 
@@ -47,14 +47,14 @@ public class LevelManager : MonoBehaviour
 	{
 		//todo fix to string levelname
 		SceneManager.LoadScene(1);
-		gameState = GameState.Ready;
+		GameState = State.Ready;
 	}
 
 	public static void LoadNextLevel()
 	{
-		int levelToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+		var levelToLoad = SceneManager.GetActiveScene().buildIndex + 1;
 		SceneManager.LoadScene(levelToLoad);
-		gameState = GameState.Ready;
+		GameState = State.Ready;
 		Block.blockCount = 0;
 	}
 

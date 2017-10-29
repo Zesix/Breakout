@@ -7,13 +7,16 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-	[SerializeField] private bool autoPlay = false;
-	[SerializeField] private float clampedPos = 1f;
-	private Ball ball;
+	[SerializeField] private bool _autoPlay;
+	[SerializeField] private float _clampedPos = 1f;
+	private Ball _ball;
 
+	private float _xPos;
+	
 	private void Start()
 	{
-		ball = FindObjectOfType<Ball>();
+		_ball = FindObjectOfType<Ball>();
+		_xPos = _ball.transform.position.x;
 	}
 
 	private void Update()
@@ -21,18 +24,12 @@ public class Paddle : MonoBehaviour
 		//if (Input.GetKeyDown(KeyCode.P))
 		//	autoPlay = !autoPlay;
 
-		float xPos = new float();
-
-		if (autoPlay)
+		if (!_autoPlay)
 		{
-			xPos = ball.transform.position.x;
-		}
-		else
-		{
-			xPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+			_xPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
 		}
 
-		float newX = Mathf.Clamp(xPos, -clampedPos, clampedPos);
+		var newX = Mathf.Clamp(_xPos, -_clampedPos, _clampedPos);
 		transform.position = new Vector2(newX, transform.position.y);
 	}
 }
