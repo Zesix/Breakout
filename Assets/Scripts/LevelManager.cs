@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
 		var levelToLoad = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(levelToLoad);
 		GameState = State.Ready;
-		Block.blockCount = 0;
+		Block.BlockCount = 0;
 	}
 
 	public void LoadLevel(string levelName)
@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
 		var levelToLoad = SceneManager.GetActiveScene().buildIndex + 1;
 		SceneManager.LoadScene(levelToLoad);
 		GameState = State.Ready;
-		Block.blockCount = 0;
+		Block.BlockCount = 0;
 	}
 
 	public void QuitGame()

@@ -7,57 +7,56 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-	private CameraController camera;
-	[SerializeField] private AudioClip audioClip = new AudioClip();
-	[SerializeField] private float shrinkAmount = .5f;
-	[SerializeField] private int hitResistance = 1;
-	[SerializeField] private GameObject explosion;
-	[SerializeField] private GameObject deathExplosion;
-	[SerializeField] private float deathExploForce = 5f;
-	[SerializeField] private float shakeHit = 0.5f;
-	[SerializeField] private float shakeExplo = 1f;
+	private CameraController _camera;
+	[SerializeField] private AudioClip _audioClip = new AudioClip();
+	[SerializeField] private float _shrinkAmount = .5f;
+	[SerializeField] private int _hitResistance = 1;
+	[SerializeField] private GameObject _explosion;
+	[SerializeField] private GameObject _deathExplosion;
+	[SerializeField] private float _shakeHit = 0.5f;
+	[SerializeField] private float _shakeExplo = 1f;
 
-	private enum BlockType { breakable, unbreakable }
+	private enum BlockType { Breakable }
 
-	[SerializeField] private BlockType blockType;
+	[SerializeField] private BlockType _blockType;
 
-	private int hitCount;
+	private int _hitCount;
 
-	public static int blockCount;
+	public static int BlockCount;
 
 	private void Start()
 	{
-		camera = FindObjectOfType<CameraController>();
-		hitCount = 0;
+		_camera = FindObjectOfType<CameraController>();
+		_hitCount = 0;
 
-		if (blockType == BlockType.breakable)
+		if (_blockType == BlockType.Breakable)
 		{
-			blockCount++;
+			BlockCount++;
 		}
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-		Instantiate(explosion, transform.position, Quaternion.identity);
-		camera.ShakeScreen(shakeHit);
-		if (blockType == BlockType.breakable)
+		Instantiate(_explosion, transform.position, Quaternion.identity);
+		_camera.ShakeScreen(_shakeHit);
+		if (_blockType == BlockType.Breakable)
 		{
-			hitCount++;
+			_hitCount++;
 
-			transform.localScale = transform.localScale * (1f - shrinkAmount);
+			transform.localScale = transform.localScale * (1f - _shrinkAmount);
 
-			AudioSource.PlayClipAtPoint(audioClip, transform.position, 1f);
+			AudioSource.PlayClipAtPoint(_audioClip, transform.position, 1f);
 
-			if (hitCount >= hitResistance)
+			if (_hitCount >= _hitResistance)
 			{
-				blockCount--;
+				BlockCount--;
 
-				if (blockCount <= 0)
+				if (BlockCount <= 0)
 				{
 					LevelManager.LoadNextLevel();
 				}
-				camera.ShakeScreen(shakeExplo);
-				Instantiate(deathExplosion, transform.position, Quaternion.identity);
+				_camera.ShakeScreen(_shakeExplo);
+				Instantiate(_deathExplosion, transform.position, Quaternion.identity);
 				Destroy(gameObject);
 			}
 		}
